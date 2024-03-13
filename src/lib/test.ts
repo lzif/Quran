@@ -1,3 +1,9 @@
-let url = "https://api.quran.com/api/v4/verses/by_chapter/1?words=true&word_fields=text_uthmani,audio_url&fields=text_uthmani&language=id&translations=id"
+import { writeJsonSync } from "https://deno.land/x/jsonfile/mod.ts";
 
-fetch(url).then(res=>res.json()).then(data=>console.log(JSON.stringify(data,null,2)))
+let url = "https://equran.id/api/v2/surat";
+
+
+fetch(url).then((res) => res.json())
+.then((data) =>{ 
+writeJsonSync("./daftarSurat.json", data.data, { spaces: 2 });
+})
